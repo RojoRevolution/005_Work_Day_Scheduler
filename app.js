@@ -4,36 +4,31 @@ $(document).ready(function () {
 
 
     // gets entire moment object
-    var now = moment();
+    var momentJS = moment();
     //currentStates pulls formated version of the current date
-    var currentStates = {
-        day: now.format('dddd'),
-        month: now.format('MMM'),
-        dayOfMonth: now.format('Do'),
-        year: now.format('YYYY'),
-        hour: now.format('h'),
-        minutes: now.format('mm'),
-        amPM: now.format('A')
+    var current = {
+        day: momentJS.format('dddd'),
+        month: momentJS.format('MMM'),
+        dayOfMonth: momentJS.format('Do'),
+        year: momentJS.format('YYYY'),
+        hour: momentJS.format('h'),
+        minutes: momentJS.format('mm'),
+        amPM: momentJS.format('A'),
+        complete: momentJS.format('LLLL')
     };
 
-    console.log(currentStates.day);
-    console.log(currentStates.month);
-    console.log(currentStates.dayOfMonth);
-    console.log(currentStates.year);
-    console.log(`${currentStates.hour}:${currentStates.minutes} ${currentStates.amPM}`)
+    console.log(current.day);
+    console.log(current.month);
+    console.log(current.dayOfMonth);
+    console.log(current.year);
+    console.log(`${current.hour}:${current.minutes} ${current.amPM}`)
+    console.log(current.complete)
 
 
 
 
-    // console.log(now.format('dddd'))
-    // console.log(now.format('MMM'))
-    // console.log(now.format('Do'))
-    // console.log(now.format('YYYY'))
-
-
-
-    // var currentDay = $('#currentDay');
-    // currentDay.text(moment())
+    var currentDayEl = $('#currentDay');
+    currentDayEl.text(`${current.day} ${current.month} ${current.dayOfMonth} ${current.year}`)
 
 
 
