@@ -65,9 +65,11 @@ $(document).ready(function () {
         $(".saveBtn").on("click", function (event) {
             event.preventDefault();
             // var time = $(this).parent().find(".hour").text();
+            var btnValue = $(this).parent().find(".saveBtn").val();
             var text = $(this).parent().find(".description").val();
             toDoList.push(text);
-            localStorage.setItem("ToDo", JSON.stringify(toDoList));
+            // adding + btnValue after the key includes it in the key
+            localStorage.setItem("ToDo-" + btnValue, JSON.stringify(text));
 
 
         });
@@ -96,7 +98,5 @@ $(document).ready(function () {
     renderToDo();
 });
 
-//empty array thats stores textinput in local storage`
-var toDoList = []
 
 
