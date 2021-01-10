@@ -64,12 +64,8 @@ $(document).ready(function () {
     function click() {
         $(".saveBtn").on("click", function (event) {
             event.preventDefault();
-            // console.log(this.value)
-            var time = $(this).parent().find(".hour").text();
+            // var time = $(this).parent().find(".hour").text();
             var text = $(this).parent().find(".description").val();
-            // var description = $(this).parent().find().v
-            console.log(time)
-            console.log(text)
             toDoList.push(text);
             localStorage.setItem("ToDo", JSON.stringify(toDoList));
 
