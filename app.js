@@ -48,13 +48,11 @@ $(document).ready(function () {
             container.append(content);
             var getItemIterator = `ToDo${i}`
             var descriptionBox = $(this).parent().find(".description")
-            console.log(descriptionBox)
             var getToDo = localStorage.getItem(getItemIterator);
             var parseToDo = JSON.parse(getToDo);
             // Parsed Items log but will not render to description box
-            console.log(parseToDo)
+            // console.log(parseToDo)
 
-            // $(".description").text(parseToDo)
             descriptionBox.text(parseToDo)
         }
 
@@ -85,15 +83,16 @@ $(document).ready(function () {
 
         if (hourDivValue < currentHour24) {
             $(".description").addClass("past")
-            // console.log("past")
+            //Can use these alerts test
+            // alert("This Is The Past")
         }
         if (hourDivValue === currentHour24) {
             $(".description").addClass("present")
-            // console.log("present")
+            // alert("This Is Now")
         }
         if (hourDivValue > currentHour24) {
             $(".description").addClass("future")
-            // console.log("future")
+            // alert("This Is The Future")
         }
     }
 
@@ -102,7 +101,7 @@ $(document).ready(function () {
     renderToDo();
 });
 
-var storageArray = [];
+
 
 
 
