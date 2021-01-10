@@ -27,38 +27,46 @@ $(document).ready(function () {
     var currentHour24 = current.hour24;
 
 
+
     //hours var was set manually until I can figure out if a similar array can be pulled from api
     var hourList = ['9:00', '10:00', '11:00', '12:00', '1:00', '2:00', '3:00', '4:00', '5:00'];
     var hourList24 = ['9', '10', '11', '12', '13', '14', '15', '16', '17']
     var container = $('.container')
 
 
+    //================================
+    function getItems(iterator) {
+        var getItemIterator = `ToDo${iterator}`
+        var getToDo = localStorage.getItem(getItemIterator);
+        // console.log(getToDo)
+        //Add text to textbox based on iteration
+        $("#text" + iterator).text(getToDo)
+    };
+
 
     //================================
-    // Renders all content, HTML text and assigns values for each button
+    // Renders all HTML content
     function renderToDo() {
 
         for (let i = 0; i < hourList.length; i++) {
+            // set up HTML content
             var content = /*html*/`
             <div class="row">
-                <div class="col-2 p-3 hour" value="${hourList24[i]}">${hourList[i]}</div>
-                <textarea id="${i}" class="col - 8 p - 3 description" value="${i}"></textarea>
+                <div id="hour${i}" class="col-2 p-3 hour" value="${hourList24[i]}">${hourList[i]}</div>
+                <textarea id="text${i}" class="col - 8 p - 3 description past" value="${i}"></textarea>
                 <button class="col-1 saveBtn" value="${i}"><i class="far fa-save"></i></button>
             </div >`;
+            //add HTML content to page
             container.append(content);
-            var getItemIterator = `ToDo${i}`
-            var descriptionBox = $(this).parent().find(".description")
-            var getToDo = localStorage.getItem(getItemIterator);
-            var parseToDo = JSON.parse(getToDo);
-            // Parsed Items log but will not render to description box
-            // console.log(parseToDo)
+            //call get items function with i as the iterator
+            getItems(i)
 
-            descriptionBox.text(parseToDo)
+            //call BG color function with I as the arguement
+            bgColor(i)
         }
-
-
         click()
-        bgColor()
+        // bgColor()
+
 
     }
     //================================
@@ -69,29 +77,30 @@ $(document).ready(function () {
             // vars use $(this) for where the click happens, goes up to parent(row), and finds the specified class and gets it's value 
             var btnValue = $(this).parent().find(".saveBtn").val();
             var text = $(this).parent().find(".description").val();
-            // toDoList.push(text);
+            // Don't need to JSON.stringify because I am not storing an object
             // adding + btnValue after the key includes it in the key
-            localStorage.setItem("ToDo" + btnValue, JSON.stringify(text));
-
-
+            localStorage.setItem("ToDo" + btnValue, text);
         });
     }
+
+
+    console.log(`Current Time: ${currentHour24}`)
+
+
     //================================
     //BG Color Function
-    function bgColor() {
-        var hourDivValue = $(".row").find(".hour").val()
-
-        if (hourDivValue < currentHour24) {
-            $(".description").addClass("past")
-            //Can use these alerts test
-            // alert("This Is The Past")
-        }
-        if (hourDivValue === currentHour24) {
-            $(".description").addClass("present")
+    function bgColor(iterator) {
+        // var hourDivValue = $(".row").find(".hour" + iterator).val()
+        var hourID = $("#hour" + iterator).val()
+        console.log(`This is My ${hourID}`)
+        // console.log(hourDivValue)
+        if (hourID === currentHour24) {
+            $("#text" + iterator).toggleClass("past present")
+            console.log("Present");
             // alert("This Is Now")
-        }
-        if (hourDivValue > currentHour24) {
-            $(".description").addClass("future")
+        } else if (hourID > currentHour24) {
+            $("#text" + iterator).toggleClass(" past future")
+            console.log("future");
             // alert("This Is The Future")
         }
     }

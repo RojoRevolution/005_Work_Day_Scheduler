@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        background-color: linen;
+    }
+
+    .red {
+        background-color: red;
+
+    }
+
+    .blue {
+        background-color: blue
+    }
+
+    .green {
+        background-color: green;
+    }
+</style>
+
+<body class="red">
+    <div>This is some text</div>
+    <br>
+    <br>
+    <button id="btn" value="This is My Value">This is a button</button>
+    <br>
+    <br>
+    <textarea id="textBox">This is a text area</textarea>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+
+        var classes = ["red", "blue", "green"]
+        var btnValue = $("button").val();
+        document.getElementById("btn").addEventListener("click", function (event) {
+            console.log("click")
+            console.log(btnValue)
+            $("body").toggleClass('red blue')
+            $("#textBox").text("NEW TEXT");
+        });
+
+
+        for (let i = 0; i < 8; i++) {
+            console.log(`This is log ${i}`)
+            test(i);
+        }
+
+        function test(iterator) {
+            console.log(`This is function ${iterator}`)
+        }
+    </script>
+</body>
+
+</html>
