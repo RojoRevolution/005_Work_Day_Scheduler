@@ -25,18 +25,14 @@ $(document).ready(function () {
 
     // var currentHour = current.hour
 
-    var currentHour24HH = current.hour24;
-    console.log(currentHour24HH)
     var currentHour24 = current.hour24;
-    console.log(currentHour24)
+    console.log("Current Hour: " + currentHour24)
     var hourTest = 13;
 
 
     //hours var was set manually until I can figure out if a similar array can be pulled from api
     var hourList = ['9:00', '10:00', '11:00', '12:00', '1:00', '2:00', '3:00', '4:00', '5:00'];
-    // var hourList24 = ['9', '10', '11', '12', '13', '14', '15', '16', '17']
     var hourList24 = [9, 10, 11, 12, 13, 14, 15, 16, 17];
-    console.log(hourList24)
     var container = $('.container')
 
 
