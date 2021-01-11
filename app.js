@@ -50,14 +50,15 @@ $(document).ready(function () {
     //BG Color Function
     function bgColor() {
         $(".hour").each(function (index) {
-            console.log($(this).text() + " " + hourTest);
-            if ($(this).text() === hourTest) {
+            console.log("Row Inner Text: " + $(this).text() + " ---  TestHour " + hourTest);
+            if ($(this).text() == hourTest) {
                 $(".description").toggleClass("past present")
-                console.log("Present");
+                // console.log("Present");
                 // alert("This Is Now")
-            } else if ($(this).text() > hourTest) {
+            }
+            if ($(this).text() > hourTest) {
                 $(".description").toggleClass("past future")
-                console.log("future");
+                // console.log("future");
                 // alert("This Is The Future")
             }
         });
