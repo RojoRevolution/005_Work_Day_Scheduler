@@ -26,35 +26,71 @@
 </style>
 
 <body class="red">
-    <div>This is some text</div>
+    <div class="test">9:00</div>
     <br>
     <br>
     <button id="btn" value="This is My Value">This is a button</button>
     <br>
     <br>
     <textarea id="textBox">This is a text area</textarea>
+    <br>
+    <br>
+    <ul>
+        <li class="test">foo</li>
+        <li class="test">bar</li>
+    </ul>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
     <script type="text/javascript">
+        var momentJS = moment();
+        //currentStates pulls formated version of the current date
+        var current = {
+            day: momentJS.format('dddd'),
+            month: momentJS.format('MMM'),
+            dayOfMonth: momentJS.format('Do'),
+            year: momentJS.format('YYYY'),
+            hour: momentJS.format('h'),
+            hour24: momentJS.format('H'),
+            minutes: momentJS.format('mm'),
+            amPM: momentJS.format('A'),
+            complete: momentJS.format('LLLL')
+        };
+
+        var momentTest = moment('2010-10-20').isBefore('2010-10-21');
+        console.log(momentTest)
+
+        var currentHour24 = (`${current.hour24}:00`);
+
+        // $(".test").each(function (index) {
+        //     console.log(index + ": " + $(this).text());
+        // });
+
+        // console.log(currentHour24)
+
+
+        // console.log($("div").text())
 
         var classes = ["red", "blue", "green"]
         var btnValue = $("button").val();
+
+
         document.getElementById("btn").addEventListener("click", function (event) {
-            console.log("click")
-            console.log(btnValue)
+            // console.log("click")
+            // console.log(btnValue)
             $("body").toggleClass('red blue')
             $("#textBox").text("NEW TEXT");
         });
 
 
         for (let i = 0; i < 8; i++) {
-            console.log(`This is log ${i}`)
+            // console.log(`This is log ${i}`)
             test(i);
         }
 
         function test(iterator) {
-            console.log(`This is function ${iterator}`)
+            // console.log(`This is function ${iterator}`)
         }
     </script>
 </body>

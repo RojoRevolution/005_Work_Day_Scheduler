@@ -25,7 +25,8 @@ $(document).ready(function () {
     // var currentHour = current.hour
 
     var currentHour24 = current.hour24;
-
+    var currentHour24 = (`${current.hour24}:00`);
+    var hourTest = (`13`);
 
 
     //hours var was set manually until I can figure out if a similar array can be pulled from api
@@ -34,7 +35,9 @@ $(document).ready(function () {
     var container = $('.container')
 
 
+
     //================================
+    //Get Items from Local storage
     function getItems(iterator) {
         var getItemIterator = `ToDo${iterator}`
         var getToDo = localStorage.getItem(getItemIterator);
@@ -43,30 +46,44 @@ $(document).ready(function () {
         $("#text" + iterator).text(getToDo)
     };
 
+    //================================
+    //BG Color Function
+    function bgColor() {
+        $(".hour").each(function (index) {
+            console.log($(this).text() + " " + hourTest);
+            if ($(this).text() === hourTest) {
+                $(".description").toggleClass("past present")
+                console.log("Present");
+                // alert("This Is Now")
+            } else if ($(this).text() > hourTest) {
+                $(".description").toggleClass("past future")
+                console.log("future");
+                // alert("This Is The Future")
+            }
+        });
+    }
+
 
     //================================
     // Renders all HTML content
     function renderToDo() {
-
+        //For loop will create and set each row of content
         for (let i = 0; i < hourList.length; i++) {
             // set up HTML content
             var content = /*html*/`
             <div class="row">
-                <div id="hour${i}" class="col-2 p-3 hour" value="${hourList24[i]}">${hourList[i]}</div>
+                <div id="${hourList[i]}" class="col-2 p-3 hour">${hourList24[i]}</div>
                 <textarea id="text${i}" class="col - 8 p - 3 description past" value="${i}"></textarea>
                 <button class="col-1 saveBtn" value="${i}"><i class="far fa-save"></i></button>
             </div >`;
-            //add HTML content to page
+            // Append HTML content to page
             container.append(content);
+
             //call get items function with i as the iterator
             getItems(i)
-
-            //call BG color function with I as the arguement
-            bgColor(i)
         }
+        bgColor()
         click()
-        // bgColor()
-
 
     }
     //================================
@@ -84,26 +101,6 @@ $(document).ready(function () {
     }
 
 
-    console.log(`Current Time: ${currentHour24}`)
-
-
-    //================================
-    //BG Color Function
-    function bgColor(iterator) {
-        // var hourDivValue = $(".row").find(".hour" + iterator).val()
-        var hourID = $("#hour" + iterator).val()
-        console.log(`This is My ${hourID}`)
-        // console.log(hourDivValue)
-        if (hourID === currentHour24) {
-            $("#text" + iterator).toggleClass("past present")
-            console.log("Present");
-            // alert("This Is Now")
-        } else if (hourID > currentHour24) {
-            $("#text" + iterator).toggleClass(" past future")
-            console.log("future");
-            // alert("This Is The Future")
-        }
-    }
 
 
 
