@@ -26,12 +26,13 @@ $(document).ready(function () {
 
     var currentHour24 = current.hour24;
     var currentHour24 = (`${current.hour24}:00`);
-    var hourTest = (`13`);
+    var hourTest = 13;
 
 
     //hours var was set manually until I can figure out if a similar array can be pulled from api
     var hourList = ['9:00', '10:00', '11:00', '12:00', '1:00', '2:00', '3:00', '4:00', '5:00'];
-    var hourList24 = ['9', '10', '11', '12', '13', '14', '15', '16', '17']
+    // var hourList24 = ['9', '10', '11', '12', '13', '14', '15', '16', '17']
+    var hourList24 = [9, 10, 11, 12, 13, 14, 15, 16, 17]
     var container = $('.container')
 
 
@@ -49,17 +50,15 @@ $(document).ready(function () {
     //================================
     //BG Color Function
     function bgColor() {
-        $(".hour").each(function (index) {
-            console.log("Row Inner Text: " + $(this).text() + " ---  TestHour " + hourTest);
-            if ($(this).text() == hourTest) {
+        $(".hour").each(function () {
+            console.log($(this).attr("data-hour") + " | " + hourTest);
+            if ($(this).attr("data-hour") == hourTest) {
                 $(".description").toggleClass("past present")
-                // console.log("Present");
-                // alert("This Is Now")
+                console.log("Present");
             }
-            if ($(this).text() > hourTest) {
+            if ($(this).attr("data-hour") > hourTest) {
                 $(".description").toggleClass("past future")
-                // console.log("future");
-                // alert("This Is The Future")
+                console.log("future");
             }
         });
     }
@@ -73,8 +72,8 @@ $(document).ready(function () {
             // set up HTML content
             var content = /*html*/`
             <div class="row">
-                <div id="${hourList[i]}" class="col-2 p-3 hour">${hourList24[i]}</div>
-                <textarea id="text${i}" class="col - 8 p - 3 description past" value="${i}"></textarea>
+                <div id="${hourList[i]}" class="col-2 p-3 hour" data-hour="${hourList24[i]}">${hourList[i]}</div>
+                <textarea id="text${i}" class="col - 8 p - 3 description past" value="${i}" ></textarea>
                 <button class="col-1 saveBtn" value="${i}"><i class="far fa-save"></i></button>
             </div >`;
             // Append HTML content to page
@@ -82,6 +81,7 @@ $(document).ready(function () {
 
             //call get items function with i as the iterator
             getItems(i)
+
         }
         bgColor()
         click()
