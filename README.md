@@ -1,6 +1,6 @@
 # 005-Daily-Planner
 
-![weather dashboard demo](assets/images/desktopscheduler.png)
+![weather dashboard demo](images/desktopscheduler.png)
 
 ## Project Outline
 
