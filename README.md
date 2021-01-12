@@ -32,3 +32,12 @@ The CSS for this assignment was already included. Initially the colors for past 
 - Function that changes the background color based on the current time
 - Rendering and setting all content on the page 
 - Functint the click events
+
+
+## Known Issue
+
+There is a peculiar issue that might be present when viewing this project regarding the background color not changing based on the hour. When I submitted the project for reviewing, all classes were applying correctly both locally and on gitHub Pages. Upon reveiwing it the following morning, all classes are now set to past.
+
+It seems to me that this approach should still work. In my bgColor Function I am comparing a data-attribute which is a string with the current hour which is also a string, but for some reason it tends to not always work, even though if you log each row it spits out an accurate comparison.
+
+I am aware I could go about this a different way and add the classes during the render Function, but as I mentioned the project worked when I submitted it in the Evening, and I'd be interested to know why this approach doesn't seem to work correctly.
