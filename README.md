@@ -1,5 +1,6 @@
 # 005-Daily-Planner
-http://github.com - automatic!
+
+
 [Github Pages](https://rojorevolution.github.io/005_Work_Day_Scheduler/)
 
 
